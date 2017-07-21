@@ -85,13 +85,13 @@ function onRequest(request, response) {
 
           // append to body if not an image file
           body += chunk
+        } else {
+
+            // append to body if content-type is not defined
+            body += chunk
         }
 
-      }) else {
-
-          // append to body if content-type is not defined
-          body += chunk
-      }
+      })
 
       proxy_response.addListener('end', function() {
 
@@ -160,6 +160,7 @@ function onRequest(request, response) {
           // append to body if not an image file
           body += chunk
         } else {
+          
             // append to body if content-type is not defined
             body += chunk
         }
