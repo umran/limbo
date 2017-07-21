@@ -82,10 +82,16 @@ function onRequest(request, response) {
             response.write(chunk, 'binary')
             return
           }
+
+          // append to body if not an image file
+          body += chunk
         }
 
-        body += chunk
-      })
+      }) else {
+
+          // append to body if content-type is not defined
+          body += chunk
+      }
 
       proxy_response.addListener('end', function() {
 
